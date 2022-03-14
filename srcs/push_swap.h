@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:40:57 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/10 18:32:50 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/14 19:01:17 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,23 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
+# define LLONG_MAX 9223372036854775807LL
+# define INT_MAX 2147483647LL
+# define INT_MIN -2147483648LL
+
+typedef struct s_stack
+{
+	int				value;
+	struct s_stack	*prev;
+	struct s_stack	*next;
+}	t_stack;
+
+typedef struct s_lstinfo
+{
+	struct s_stack	*a_top;
+	struct s_stack	*a_bottom;
+	struct s_stack	*b_top;
+	struct s_stack	*b_bottom;
+}	t_lstinfo;
 
 #endif
