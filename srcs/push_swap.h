@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:40:57 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/14 19:01:17 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/16 20:21:39 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 typedef struct s_stack
 {
-	int				value;
+	long long		value;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }	t_stack;

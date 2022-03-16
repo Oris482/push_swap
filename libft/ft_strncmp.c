@@ -6,9 +6,11 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:19:27 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/10 13:41:37 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/16 18:56:15 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
