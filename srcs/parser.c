@@ -6,12 +6,11 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:45:12 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/16 20:21:06 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/17 17:48:44 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static t_stack	*ft_makelst(t_stack *prev_node, long long value)
 {
@@ -22,7 +21,7 @@ static t_stack	*ft_makelst(t_stack *prev_node, long long value)
 	node = (t_stack *)malloc(sizeof(t_stack));
 	if (node == NULL)
 		return (NULL);
-	node->value = (int)value;
+	node->value = value;
 	node->next = NULL;
 	if (prev_node != NULL)
 	{
@@ -77,19 +76,6 @@ static t_stack	*put_strtoi(t_stack **cur_node, char *str)
 	return (*cur_node);
 }
 
-static t_stack	*lst_fclean(t_stack *head)
-{
-	t_stack	*tmp;
-
-	while (head)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp);
-	}
-	return (NULL);
-}
-
 t_stack	*parse_num_list(int argc, char **argv)
 {
 	int			idx;
@@ -117,22 +103,4 @@ t_stack	*parse_num_list(int argc, char **argv)
 			return (lst_fclean(head));
 	}
 	return (head);
-}
-
-int	main(int argc, char *argv[])
-{
-	t_stack	*head;
-	t_stack	*tmp;
-
-	if (argc > 1)
-	{
-		head = parse_num_list(argc, argv);
-		tmp = head;
-		while (tmp)
-		{
-			printf("%lld\n", tmp->value);
-			tmp = tmp->next;
-		}
-		lst_fclean(head);
-	}
 }
