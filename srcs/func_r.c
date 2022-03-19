@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 20:56:39 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/19 17:37:39 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/19 22:25:20 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	func_ra(t_lstinfo *lstinfo, t_command **lst_command)
 {
 	t_stack	*tmp;
 
+	if (lstinfo->a_top->next == NULL)
+		return (1);
 	tmp = lstinfo->a_top;
 	lstinfo->a_top = lstinfo->a_top->next;
 	lstinfo->a_top->prev = NULL;
@@ -30,6 +32,8 @@ int	func_rb(t_lstinfo *lstinfo, t_command **lst_command)
 {
 	t_stack	*tmp;
 
+	if (lstinfo->b_top->next == NULL)
+		return (1);
 	tmp = lstinfo->b_top;
 	lstinfo->b_top = lstinfo->b_top->next;
 	lstinfo->b_top->prev = NULL;
@@ -44,6 +48,8 @@ int	func_rra(t_lstinfo *lstinfo, t_command **lst_command)
 {
 	t_stack	*tmp;
 
+	if (lstinfo->a_top->next == NULL)
+		return (1);
 	tmp = lstinfo->a_bottom;
 	lstinfo->a_bottom = lstinfo->a_bottom->prev;
 	lstinfo->a_bottom->next = NULL;
@@ -58,6 +64,8 @@ int	func_rrb(t_lstinfo *lstinfo, t_command **lst_command)
 {
 	t_stack	*tmp;
 
+	if (lstinfo->b_top->next == NULL)
+		return (1);
 	tmp = lstinfo->b_bottom;
 	lstinfo->b_bottom = lstinfo->b_bottom->prev;
 	lstinfo->b_bottom->next = NULL;

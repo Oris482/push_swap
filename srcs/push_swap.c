@@ -6,12 +6,27 @@
 /*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/19 19:25:54 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/19 22:26:21 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+
+static int	*three_split(t_lstinfo *lstinfo, int start,
+		int end, int pos)
+{
+	int		qty;
+	t_stack	*cur_node;
+
+	qty = end - start + 1;
+	if (qty <= 6)
+		return (manual_sort());
+	cur_node = lstinfo->a_top;
+	while (qty-- > 0)
+	{
+	}
+}
 
 static int	check_overlap(t_stack *a_stack)
 {
@@ -95,7 +110,21 @@ int	main(int argc, char *argv[])
 			printf("%lld ", tmp_b->value);
 			tmp_b = tmp_b->next;
 		}
-
+		func_pb(lstinfo);
+		func_pb(lstinfo);
+		func_pb(lstinfo);
+		func_pb(lstinfo);
+		func_pb(lstinfo);
+		func_pb(lstinfo);
+		sort_acb(lstinfo, 0);
+		sort_acb(lstinfo, 1);
+		func_pa(lstinfo);
+		func_pa(lstinfo);
+		func_pa(lstinfo);
+		sort_acb(lstinfo, 2);
+		func_pa(lstinfo);
+		func_pa(lstinfo);
+		func_pa(lstinfo);
 		tmp_a = lstinfo->a_top;
 		tmp_b = lstinfo->b_top;
 		printf("\n----------After move-----------\n");
@@ -111,7 +140,13 @@ int	main(int argc, char *argv[])
 			printf("%lld ", tmp_b->value);
 			tmp_b = tmp_b->next;
 		}
+		printf("\n----------pos check-----------\n");
+		//printf("pos 0 check = %d\n", check_sorted(lstinfo, 0, 3));
+		//printf("pos 1 check = %d\n", check_sorted(lstinfo, 1, 3));
+		//printf("pos 2 check = %d\n", check_sorted(lstinfo, 2, 3));
 		printf("\n----------command list-----------\n");
+		while (lstinfo->lst_command->prev != NULL)
+			lstinfo->lst_command = lstinfo->lst_command->prev;
 		tmp_command = lstinfo->lst_command;
 		while (tmp_command)
 		{

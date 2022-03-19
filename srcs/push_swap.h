@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:40:57 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/19 18:46:07 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/19 22:06:25 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,29 @@ typedef struct s_lstinfo
 typedef struct s_command
 {
 	char				command[4];
+	struct s_command	*prev;
 	struct s_command	*next;
 }	t_command;
 
 t_stack		*parse_num_list(int argc, char **argv);
 int			print_error(void);
 t_lstinfo	*lst_fclean(t_lstinfo *lstinfo);
-int			record_command(t_command **lst_command, char *command);
+int			record_command(t_lstinfo *lstinfo, char *command);
+int	check_sorted(t_lstinfo *lstinfo, int pos, int qty);
 
-int			func_sa(t_lstinfo *lstinfo, t_command **lst_command);
-int			func_sb(t_lstinfo *lstinfo, t_command **lst_command);
-int			func_pa(t_lstinfo *lstinfo, t_command **lst_command);
-int			func_pb(t_lstinfo *lstinfo, t_command **lst_command);
-int			func_ra(t_lstinfo *lstinfo, t_command **lst_command);
-int			func_rb(t_lstinfo *lstinfo, t_command **lst_command);
-int			func_rra(t_lstinfo *lstinfo, t_command **lst_command);
-int			func_rrb(t_lstinfo *lstinfo, t_command **lst_command);
+int			func_sa(t_lstinfo *lstinfo);
+int			func_sb(t_lstinfo *lstinfo);
+int			func_pa(t_lstinfo *lstinfo);
+int			func_pb(t_lstinfo *lstinfo);
+int			func_ra(t_lstinfo *lstinfo);
+int			func_rb(t_lstinfo *lstinfo);
+int			func_rra(t_lstinfo *lstinfo);
+int			func_rrb(t_lstinfo *lstinfo);
 
-int	sort_acb(t_lstinfo *lstinfo, int c, t_command **lst_command);
-int	sort_bac(t_lstinfo *lstinfo, int c, t_command **lst_command);
-int	sort_bca(t_lstinfo *lstinfo, int c, t_command **lst_command);
-int	sort_cab(t_lstinfo *lstinfo, int c, t_command **lst_command);
-int	sort_cba(t_lstinfo *lstinfo, int c, t_command **lst_command);
+int	sort_acb(t_lstinfo *lstinfo, int pos);
+int	sort_bac(t_lstinfo *lstinfo, int pos);
+int	sort_bca(t_lstinfo *lstinfo, int pos);
+int	sort_cab(t_lstinfo *lstinfo, int pos);
+int	sort_cba(t_lstinfo *lstinfo, int pos);
 
 #endif
