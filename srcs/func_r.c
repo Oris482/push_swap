@@ -6,13 +6,13 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 20:56:39 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/18 22:15:04 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/19 17:37:39 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	func_ra(t_lstinfo *lstinfo, t_commands **lst_command)
+int	func_ra(t_lstinfo *lstinfo, t_command **lst_command)
 {
 	t_stack	*tmp;
 
@@ -26,7 +26,7 @@ int	func_ra(t_lstinfo *lstinfo, t_commands **lst_command)
 	return (record_command(lst_command, "ra"));
 }
 
-int	func_rb(t_lstinfo *lstinfo, t_commands **lst_command)
+int	func_rb(t_lstinfo *lstinfo, t_command **lst_command)
 {
 	t_stack	*tmp;
 
@@ -40,7 +40,7 @@ int	func_rb(t_lstinfo *lstinfo, t_commands **lst_command)
 	return (record_command(lst_command, "rb"));
 }
 
-int	func_rra(t_lstinfo *lstinfo, t_commands **lst_command)
+int	func_rra(t_lstinfo *lstinfo, t_command **lst_command)
 {
 	t_stack	*tmp;
 
@@ -54,7 +54,7 @@ int	func_rra(t_lstinfo *lstinfo, t_commands **lst_command)
 	return (record_command(lst_command, "rra"));
 }
 
-int	func_rrb(t_lstinfo *lstinfo, t_commands **lst_command)
+int	func_rrb(t_lstinfo *lstinfo, t_command **lst_command)
 {
 	t_stack	*tmp;
 

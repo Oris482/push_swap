@@ -6,15 +6,15 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:09 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/18 22:21:37 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/19 17:52:27 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	record_command(t_commands **lst_command, char *command)
+int	record_command(t_command **lst_command, char *command)
 {
-	t_commands	*new_node;
+	t_command	*new_node;
 	int			idx;
 
 	idx = 0;
@@ -24,7 +24,7 @@ int	record_command(t_commands **lst_command, char *command)
 			((*lst_command)->command)[idx++] = *command++;
 		return (1);
 	}
-	new_node = (t_commands *)ft_calloc(1, sizeof(t_commands));
+	new_node = (t_command *)ft_calloc(1, sizeof(t_command));
 	if (new_node == NULL)
 		return (0);
 	(*lst_command)->next = new_node;
@@ -34,16 +34,30 @@ int	record_command(t_commands **lst_command, char *command)
 	return (1);
 }
 
-t_stack	*lst_fclean(t_stack *head)
+t_lstinfo	*lst_fclean(t_lstinfo *lstinfo)
 {
-	t_stack	*tmp;
+	t_stack		*stack_tmp;
+	t_command	*command_tmp;
 
-	while (head)
+	while (lstinfo->a_top)
 	{
-		tmp = head;
-		head = head->next;
-		free(tmp);
+		stack_tmp = lstinfo->a_top;
+		lstinfo->a_top = stack_tmp->next;
+		free(stack_tmp);
 	}
+	while (lstinfo->b_top)
+	{
+		stack_tmp = lstinfo->b_top;
+		lstinfo->b_top = stack_tmp->next;
+		free(stack_tmp);
+	}
+	while (lstinfo->lst_command)
+	{
+		command_tmp = lstinfo->lst_command;
+		lstinfo->lst_command = command_tmp->next;
+		free(command_tmp);
+	}
+	free (lstinfo);
 	return (NULL);
 }
 

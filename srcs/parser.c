@@ -6,11 +6,24 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:45:12 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/17 17:48:44 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/19 17:35:39 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static t_stack	*lst_stack_clean(t_stack *head)
+{
+	t_stack	*tmp;
+
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free (tmp);
+	}
+	return (NULL);
+}
 
 static t_stack	*ft_makelst(t_stack *prev_node, long long value)
 {
@@ -90,17 +103,17 @@ t_stack	*parse_num_list(int argc, char **argv)
 	{
 		cur_node = ft_makelst(cur_node, 0);
 		if (cur_node == NULL)
-			return (NULL);
+			return (lst_stack_clean(head));
 		if (head == NULL)
 			head = cur_node;
 		cur_arg = argv[idx++];
 		while (*cur_arg == ' ')
 			cur_arg++;
 		if (*cur_arg == '\0')
-			return (lst_fclean(head));
+			return (lst_stack_clean(head));
 		cur_node = put_strtoi(&cur_node, cur_arg);
 		if (cur_node == NULL)
-			return (lst_fclean(head));
+			return (lst_stack_clean(head));
 	}
 	return (head);
 }

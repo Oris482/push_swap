@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/18 22:21:35 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/19 19:25:54 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,50 +33,51 @@ static int	check_overlap(t_stack *a_stack)
 	return (0);
 }
 
-static t_lstinfo	*init_lst(t_lstinfo *lstinfo, int argc, char *argv[])
+static t_lstinfo	*init_lst(t_lstinfo *lstinfo, int argc, char *argv[],
+		int	*is_sorted)
 {
 	t_stack	*a_stack;
-	int		is_sorted;
 
 	lstinfo->a_top = parse_num_list(argc, argv);
+	if (lstinfo->a_top == NULL)
+		return (NULL);
 	a_stack = lstinfo->a_top;
-	is_sorted = 1;
+	*is_sorted = 1;
 	while (a_stack && ++(lstinfo->arg_cnt))
 	{
 		if (a_stack->value > INT_MAX || a_stack->value < INT_MIN)
-		{
-			lst_fclean(lstinfo->a_top);
-			return (NULL);
-		}
+			return (lst_fclean(lstinfo));
 		if (a_stack->next && a_stack->next->value < a_stack->value)
-			is_sorted = 0;
+			*is_sorted = 0;
 		if (a_stack->next == NULL)
 			lstinfo->a_bottom = a_stack;
 		a_stack = a_stack->next;
 	}
-	if (is_sorted || check_overlap(lstinfo->a_top))
-	{
-		lst_fclean(lstinfo->a_top);
-		return (NULL);
-	}
+	if (*is_sorted || check_overlap(lstinfo->a_top))
+		return (lst_fclean(lstinfo));
 	return (lstinfo);
 }
 
 int	main(int argc, char *argv[])
 {
 	t_lstinfo	*lstinfo;
-	t_commands	*lst_command;
+	t_command	*lst_command;
+	int			is_sorted;
 	t_stack		*tmp_a;
 	t_stack		*tmp_b;
+	t_command		*tmp_command;
+	int			idx;
 
 	lstinfo = (t_lstinfo *)ft_calloc(1, sizeof(t_lstinfo));
-	lst_command = (t_commands*)ft_calloc(1, sizeof(t_commands));
+	lst_command = (t_command *)ft_calloc(1, sizeof(t_command));
 	if (lstinfo == NULL || lst_command == NULL)
 		return (print_error());
 	lstinfo->lst_command = lst_command;
 	if (argc > 1)
 	{
-		lstinfo = init_lst(lstinfo, argc, argv);
+		lstinfo = init_lst(lstinfo, argc, argv, &is_sorted);
+		if (is_sorted == 1)
+			return (0);
 		if (lstinfo == NULL)
 			return (print_error());
 		tmp_a = lstinfo->a_top;
@@ -94,17 +95,7 @@ int	main(int argc, char *argv[])
 			printf("%lld ", tmp_b->value);
 			tmp_b = tmp_b->next;
 		}
-		func_pb(lstinfo, &lst_command);
-		func_pb(lstinfo, &lst_command);
-		func_pb(lstinfo, &lst_command);
-		func_sb(lstinfo, &lst_command);
-		func_pb(lstinfo, &lst_command);
-		func_sa(lstinfo, &lst_command);
-		func_pa(lstinfo, &lst_command);
-		func_ra(lstinfo, &lst_command);
-		func_rb(lstinfo, &lst_command);
-		func_rra(lstinfo, &lst_command);
-		func_rrb(lstinfo, &lst_command);
+
 		tmp_a = lstinfo->a_top;
 		tmp_b = lstinfo->b_top;
 		printf("\n----------After move-----------\n");
@@ -121,12 +112,12 @@ int	main(int argc, char *argv[])
 			tmp_b = tmp_b->next;
 		}
 		printf("\n----------command list-----------\n");
-		while (lstinfo->lst_command)
+		tmp_command = lstinfo->lst_command;
+		while (tmp_command)
 		{
-			printf("%s\n", lstinfo->lst_command->command);
-			lstinfo->lst_command = lstinfo->lst_command->next;
+			printf("%s\n", tmp_command->command);
+			tmp_command = tmp_command->next;
 		}
-		lst_fclean(lstinfo->a_top);
-		lst_fclean(lstinfo->b_top);
+		lst_fclean(lstinfo);
 	}
 }
