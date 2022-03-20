@@ -6,13 +6,13 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 20:51:33 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/20 17:30:08 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/20 17:54:04 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	move_to_a(t_lstinfo *lstinfo, int pos, int qty)
+int	move_to_a(t_lstinfo *lstinfo, int pos, int qty)
 {
 	if (pos == 1)
 		while (qty-- > 0)

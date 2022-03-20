@@ -6,11 +6,21 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:09 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/20 16:43:37 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/20 19:55:12 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_stack	*set_cur_node(t_lstinfo *lstinfo, int pos)
+{
+	if (pos == 0)
+		return (lstinfo->a_top);
+	else if (pos == 1)
+		return (lstinfo->b_top);
+	else
+		return (lstinfo->b_bottom);
+}
 
 int	record_command(t_lstinfo *lstinfo, char *command)
 {
@@ -37,29 +47,6 @@ int	record_command(t_lstinfo *lstinfo, char *command)
 	return (1);
 }
 
-/*
-int	record_command(t_command **lst_command, char *command)
-{
-	t_command	*new_node;
-	int			idx;
-
-	idx = 0;
-	if ((*(*lst_command)->command) == '\0')
-	{
-		while (*command)
-			((*lst_command)->command)[idx++] = *command++;
-		return (1);
-	}
-	new_node = (t_command *)ft_calloc(1, sizeof(t_command));
-	if (new_node == NULL)
-		return (0);
-	(*lst_command)->next = new_node;
-	while (*command)
-		(new_node->command)[idx++] = *command++;
-	*lst_command = new_node;
-	return (1);
-}
-*/
 t_lstinfo	*lst_fclean(t_lstinfo *lstinfo)
 {
 	t_stack		*stack_tmp;

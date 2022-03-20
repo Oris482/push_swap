@@ -6,29 +6,48 @@
 /*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/20 17:39:39 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/20 19:38:16 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-/*
-static int	*three_split(t_lstinfo *lstinfo, int start,
-		int end, int pos)
+static int	split_by_pivot(t_lstinfo *lstinfo, int s_pivot, int b_pivot)
+{
+	if (lstinfo->a_top->idx >= b_pivot)
+		return (func_ra(lstinfo));
+	else if (lstinfo->a_top->idx >= s_pivot)
+		return (func_pb(lstinfo));
+	else
+		return (func_pb(lstinfo) && func_rb(lstinfo));
+}
+
+static int	three_split(t_lstinfo *lstinfo, int start, int end, int pos)
 {
 	int		qty;
-	t_stack	*cur_node;
 
 	qty = end - start + 1;
+	cnt = qty;
+	if (check_sorted(lstinfo, pos, qty))
+		return (1);
 	if (qty <= 6)
 		return (manual_sort());
-	cur_node = lstinfo->a_top;
-	while (qty-- > 0)
-	{
-	}
+	if (pos == 1)
+		return (move_to_a(lstinfo, pos, qty)
+			&& three_split(lstinfo, start, end, 0));
+	if (pos == 2)
+		return (move_to_a(lstinfo, pos, qty)
+			&& three_split(lstinfo, start, end, 0));
+	while (cnt-- > 0)
+		if (split_by_pivot(lstinfo, start + (qty / 3), start + ((qty / 3) * 2)))
+			return (0);
+	if (!three_split(lstinfo, start + ((qty / 3) * 2), end,  0))
+		return (0);
+	if (!three_split(lstinfo, start + (qty / 3), start + (qty / 3 * 2) - 1, 1))
+		return (0);
+	return (three_split(lstinfo, start, start + (qty / 3) - 1, 2));
 }
-*/
 
 static int	check_overlap(t_stack *a_stack)
 {
