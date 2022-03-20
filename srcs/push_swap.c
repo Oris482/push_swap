@@ -6,13 +6,14 @@
 /*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/19 22:26:21 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/20 17:39:39 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
+/*
 static int	*three_split(t_lstinfo *lstinfo, int start,
 		int end, int pos)
 {
@@ -27,6 +28,7 @@ static int	*three_split(t_lstinfo *lstinfo, int start,
 	{
 	}
 }
+*/
 
 static int	check_overlap(t_stack *a_stack)
 {
@@ -95,49 +97,44 @@ int	main(int argc, char *argv[])
 			return (0);
 		if (lstinfo == NULL)
 			return (print_error());
+		arg_indexing(lstinfo);
+		func_pb(lstinfo);
+		func_pb(lstinfo);
+		func_pb(lstinfo);
+		func_pb(lstinfo);
+		func_pb(lstinfo);
+		func_pb(lstinfo);
 		tmp_a = lstinfo->a_top;
 		tmp_b = lstinfo->b_top;
 		printf("=========init stack========\n");
 		printf("#####Stack A#####\n");
 		while (tmp_a)
 		{
-			printf("%lld ", tmp_a->value);
+			printf("%lld(%d) ", tmp_a->value, tmp_a->idx);
 			tmp_a = tmp_a->next;
 		}
 		printf("\n#####Stack B#####\n");
 		while (tmp_b)
 		{
-			printf("%lld ", tmp_b->value);
+			printf("%lld(%d) ", tmp_b->value, tmp_b->idx);
 			tmp_b = tmp_b->next;
 		}
-		func_pb(lstinfo);
-		func_pb(lstinfo);
-		func_pb(lstinfo);
-		func_pb(lstinfo);
-		func_pb(lstinfo);
-		func_pb(lstinfo);
-		sort_acb(lstinfo, 0);
-		sort_acb(lstinfo, 1);
-		func_pa(lstinfo);
-		func_pa(lstinfo);
-		func_pa(lstinfo);
-		sort_acb(lstinfo, 2);
-		func_pa(lstinfo);
-		func_pa(lstinfo);
-		func_pa(lstinfo);
+		sort_cba(lstinfo, 0);
+		sort_cba(lstinfo, 1);
+		sort_cba(lstinfo, 2);
 		tmp_a = lstinfo->a_top;
 		tmp_b = lstinfo->b_top;
 		printf("\n----------After move-----------\n");
 		printf("\n#####Stack A#####\n");
 		while (tmp_a)
 		{
-			printf("%lld ", tmp_a->value);
+			printf("%lld(%d) ", tmp_a->value, tmp_a->idx);
 			tmp_a = tmp_a->next;
 		}
 		printf("\n#####Stack B#####\n");
 		while (tmp_b)
 		{
-			printf("%lld ", tmp_b->value);
+			printf("%lld(%d) ", tmp_b->value, tmp_b->idx);
 			tmp_b = tmp_b->next;
 		}
 		printf("\n----------pos check-----------\n");

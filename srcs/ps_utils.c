@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:09 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/19 22:10:34 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/20 16:43:37 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	record_command(t_lstinfo *lstinfo, char *command)
 
 	cur_node = lstinfo->lst_command;
 	idx = 0;
-	if (cur_node->command == '\0')
+	if ((cur_node->command)[0] == '\0')
 	{
 		while (*command)
 			(cur_node->command)[idx++] = *command++;

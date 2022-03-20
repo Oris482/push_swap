@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:40:57 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/19 22:06:25 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/20 17:38:18 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int			print_error(void);
 t_lstinfo	*lst_fclean(t_lstinfo *lstinfo);
 int			record_command(t_lstinfo *lstinfo, char *command);
 int	check_sorted(t_lstinfo *lstinfo, int pos, int qty);
+void	arg_indexing(t_lstinfo *lstinfo);
 
 int			func_sa(t_lstinfo *lstinfo);
 int			func_sb(t_lstinfo *lstinfo);
@@ -59,6 +60,7 @@ int			func_rb(t_lstinfo *lstinfo);
 int			func_rra(t_lstinfo *lstinfo);
 int			func_rrb(t_lstinfo *lstinfo);
 
+int	sort_abc(t_lstinfo *lstinfo, int pos);
 int	sort_acb(t_lstinfo *lstinfo, int pos);
 int	sort_bac(t_lstinfo *lstinfo, int pos);
 int	sort_bca(t_lstinfo *lstinfo, int pos);

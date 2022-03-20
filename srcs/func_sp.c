@@ -6,18 +6,19 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 20:56:33 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/19 19:05:03 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/20 17:16:07 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	func_sa(t_lstinfo *lstinfo, t_command **lst_command)
+int	func_sa(t_lstinfo *lstinfo)
 {
 	t_stack	*tmp;
 
 	tmp = lstinfo->a_top->next;
-	tmp->next->prev = lstinfo->a_top;
+	if (tmp->next)
+		tmp->next->prev = lstinfo->a_top;
 	lstinfo->a_top->next = tmp->next;
 	lstinfo->a_top->prev = tmp;
 	tmp->next = lstinfo->a_top;
@@ -25,15 +26,16 @@ int	func_sa(t_lstinfo *lstinfo, t_command **lst_command)
 	lstinfo->a_top = tmp;
 	if (lstinfo->a_top->next->next == NULL)
 		lstinfo->a_bottom = lstinfo->a_top->next;
-	return (record_command(lst_command, "sa"));
+	return (record_command(lstinfo, "sa"));
 }
 
-int	func_sb(t_lstinfo *lstinfo, t_command **lst_command)
+int	func_sb(t_lstinfo *lstinfo)
 {
 	t_stack	*tmp;
 
 	tmp = lstinfo->b_top->next;
-	tmp->next->prev = lstinfo->b_top;
+	if (tmp->next)
+		tmp->next->prev = lstinfo->b_top;
 	lstinfo->b_top->next = tmp->next;
 	lstinfo->b_top->prev = tmp;
 	tmp->next = lstinfo->b_top;
@@ -41,10 +43,10 @@ int	func_sb(t_lstinfo *lstinfo, t_command **lst_command)
 	lstinfo->b_top = tmp;
 	if (lstinfo->b_top->next->next == NULL)
 		lstinfo->b_bottom = lstinfo->b_top->next;
-	return (record_command(lst_command, "sb"));
+	return (record_command(lstinfo, "sb"));
 }
 
-int	func_pa(t_lstinfo *lstinfo, t_command **lst_command)
+int	func_pa(t_lstinfo *lstinfo)
 {
 	t_stack	*tmp;
 
@@ -69,10 +71,10 @@ int	func_pa(t_lstinfo *lstinfo, t_command **lst_command)
 	}
 	if (lstinfo->b_top == NULL)
 		lstinfo->b_bottom = NULL;
-	return (record_command(lst_command, "pa"));
+	return (record_command(lstinfo, "pa"));
 }
 
-int	func_pb(t_lstinfo *lstinfo, t_command **lst_command)
+int	func_pb(t_lstinfo *lstinfo)
 {
 	t_stack	*tmp;
 
@@ -97,5 +99,5 @@ int	func_pb(t_lstinfo *lstinfo, t_command **lst_command)
 	}
 	if (lstinfo->a_top == NULL)
 		lstinfo->a_bottom = NULL;
-	return (record_command(lst_command, "pb"));
+	return (record_command(lstinfo, "pb"));
 }

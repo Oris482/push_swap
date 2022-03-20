@@ -6,13 +6,13 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 20:56:39 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/19 22:25:20 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/20 16:43:07 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	func_ra(t_lstinfo *lstinfo, t_command **lst_command)
+int	func_ra(t_lstinfo *lstinfo)
 {
 	t_stack	*tmp;
 
@@ -25,10 +25,10 @@ int	func_ra(t_lstinfo *lstinfo, t_command **lst_command)
 	tmp->prev = lstinfo->a_bottom;
 	tmp->next = NULL;
 	lstinfo->a_bottom = tmp;
-	return (record_command(lst_command, "ra"));
+	return (record_command(lstinfo, "ra"));
 }
 
-int	func_rb(t_lstinfo *lstinfo, t_command **lst_command)
+int	func_rb(t_lstinfo *lstinfo)
 {
 	t_stack	*tmp;
 
@@ -41,10 +41,10 @@ int	func_rb(t_lstinfo *lstinfo, t_command **lst_command)
 	tmp->prev = lstinfo->b_bottom;
 	tmp->next = NULL;
 	lstinfo->b_bottom = tmp;
-	return (record_command(lst_command, "rb"));
+	return (record_command(lstinfo, "rb"));
 }
 
-int	func_rra(t_lstinfo *lstinfo, t_command **lst_command)
+int	func_rra(t_lstinfo *lstinfo)
 {
 	t_stack	*tmp;
 
@@ -57,10 +57,10 @@ int	func_rra(t_lstinfo *lstinfo, t_command **lst_command)
 	tmp->next = lstinfo->a_top;
 	tmp->prev = NULL;
 	lstinfo->a_top = tmp;
-	return (record_command(lst_command, "rra"));
+	return (record_command(lstinfo, "rra"));
 }
 
-int	func_rrb(t_lstinfo *lstinfo, t_command **lst_command)
+int	func_rrb(t_lstinfo *lstinfo)
 {
 	t_stack	*tmp;
 
@@ -73,5 +73,5 @@ int	func_rrb(t_lstinfo *lstinfo, t_command **lst_command)
 	tmp->next = lstinfo->b_top;
 	tmp->prev = NULL;
 	lstinfo->b_top = tmp;
-	return (record_command(lst_command, "rrb"));
+	return (record_command(lstinfo, "rrb"));
 }
