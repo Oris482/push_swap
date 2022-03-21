@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   five_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 17:02:46 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/21 22:08:51 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/22 04:05:59 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,8 @@ static int	five_sort_pos_one(t_lstinfo *lstinfo, int end)
 			rewind++;
 		}
 	}
-	while (--rewind > 0)
-		if (!func_rrb(lstinfo))
-			return (0);
+	if (!rewind_stack(lstinfo, 1, rewind))
+		return (0);
 	return (two_sort(lstinfo, 0) && three_sort(lstinfo, 1));
 }
 
@@ -76,7 +75,7 @@ static int	five_sort_pos_two(t_lstinfo *lstinfo, int end)
 	rewind = 0;
 	while (rewind++ < 5)
 	{
-		if (func_rrb(lstinfo))
+		if (!func_rrb(lstinfo))
 			return (0);
 		if (lstinfo->b_top->idx == end || lstinfo->b_top->idx == (end - 1))
 			if (!func_pa(lstinfo))

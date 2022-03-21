@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/22 02:55:26 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/22 04:10:07 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ int	three_split(t_lstinfo *lstinfo, int start, int end, int pos)
 		return (1);
 	if (qty <= 5)
 		return (manual_sort(lstinfo, pos, qty, end));
-	if (pos == 1)
-		move_to_a(lstinfo, pos, qty);
-	if (pos == 2)
-		move_to_a(lstinfo, pos, qty);
 	return (split_by_pivot(lstinfo, start, end, pos));
 }
 
