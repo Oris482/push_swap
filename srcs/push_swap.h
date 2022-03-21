@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:40:57 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/21 20:30:38 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/22 02:30:06 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ typedef struct s_lstinfo
 	struct s_stack		*a_bottom;
 	struct s_stack		*b_top;
 	struct s_stack		*b_bottom;
-	size_t				arg_cnt;
+	int					a_arg_cnt;
+	int					b_arg_cnt;
 	struct s_command	*lst_command;
 }	t_lstinfo;
 

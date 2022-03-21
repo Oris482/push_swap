@@ -1,3 +1,5 @@
 .DS_Store
 push_swap_tester/
 *.swp
+.vscode/
+push_swap_visualizer/

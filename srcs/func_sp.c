@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   func_sp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 20:56:33 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/20 17:16:07 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/22 02:27:44 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	func_pa(t_lstinfo *lstinfo)
 		lstinfo->b_top = lstinfo->b_top->next;
 		lstinfo->b_top->prev = NULL;
 		lstinfo->a_top->next = NULL;
-		lstinfo->a_top->prev = NULL;
 		lstinfo->a_bottom = lstinfo->a_top;
 	}
 	else
@@ -71,6 +70,8 @@ int	func_pa(t_lstinfo *lstinfo)
 	}
 	if (lstinfo->b_top == NULL)
 		lstinfo->b_bottom = NULL;
+	lstinfo->a_arg_cnt++;
+	lstinfo->b_arg_cnt--;
 	return (record_command(lstinfo, "pa"));
 }
 
@@ -84,7 +85,6 @@ int	func_pb(t_lstinfo *lstinfo)
 		lstinfo->a_top = lstinfo->a_top->next;
 		lstinfo->a_top->prev = NULL;
 		lstinfo->b_top->next = NULL;
-		lstinfo->b_top->prev = NULL;
 		lstinfo->b_bottom = lstinfo->b_top;
 	}
 	else
@@ -99,5 +99,7 @@ int	func_pb(t_lstinfo *lstinfo)
 	}
 	if (lstinfo->a_top == NULL)
 		lstinfo->a_bottom = NULL;
+	lstinfo->a_arg_cnt--;
+	lstinfo->b_arg_cnt++;
 	return (record_command(lstinfo, "pb"));
 }

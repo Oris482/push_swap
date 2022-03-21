@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/22 01:39:56 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/22 02:23:04 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static t_lstinfo	*init_lst(t_lstinfo *lstinfo, int argc, char *argv[],
 		return (NULL);
 	a_stack = lstinfo->a_top;
 	*is_sorted = 1;
-	while (a_stack && ++(lstinfo->arg_cnt))
+	while (a_stack && ++(lstinfo->a_arg_cnt))
 	{
 		if (a_stack->value > INT_MAX || a_stack->value < INT_MIN)
 			return (lst_fclean(lstinfo));
@@ -139,7 +139,7 @@ int	main(int argc, char *argv[])
 		if (lstinfo == NULL)
 			return (print_error());
 		arg_indexing(lstinfo);
-		if (!three_split(lstinfo, 0, lstinfo->arg_cnt - 1, 0))
+		if (!three_split(lstinfo, 0, lstinfo->a_arg_cnt - 1, 0))
 			return (print_error());
 		while (lstinfo->lst_command->prev != NULL)
 			lstinfo->lst_command = lstinfo->lst_command->prev;

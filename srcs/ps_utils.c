@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:09 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/21 20:30:59 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/22 02:29:37 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 int	rewind_stack(t_lstinfo *lstinfo, int pos, int times)
 {
+	if (pos == 0 && times == lstinfo->a_arg_cnt)
+		return (1);
+	else if ((pos == 1 || pos == 2) && times == lstinfo->b_arg_cnt)
+		return (1);
 	while (times-- > 0)
 	{
 		if (pos == 0)
