@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/21 20:38:24 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/21 21:01:01 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,29 @@ static int	three_split(t_lstinfo *lstinfo, int start, int end, int pos)
 	return (three_split(lstinfo, start, start + (qty / 3) - 1, 2));
 }
 
-static int	check_overlap(t_stack *a_stack)
+static int	check_overlap(t_lstinfo *lstinfo, int *is_sorted)
 {
-	long long	cur_value;
-	t_stack		*comp_stack;
+	int			cnt;
+	t_stack		*cur_node;
+	t_stack		*comp_node;
 
-	while (a_stack->next != NULL)
+	cnt = 0;
+	cur_node = lstinfo->a_top;
+	while (cur_node)
 	{
-		cur_value = a_stack->value;
-		comp_stack = a_stack->next;
-		while (comp_stack)
+		comp_node = lstinfo->a_top;
+		while (comp_node)
 		{
-			if (cur_value == comp_stack->value)
+			if (cur_node->value == comp_node->value)
+				cnt++;
+			comp_node = comp_node->next;
+			if (cnt == 2)
+			{
+				*is_sorted = 0;
 				return (1);
-			comp_stack = comp_stack->next;
+			}
 		}
-		a_stack = a_stack->next;
+		cur_node = cur_node->next;
 	}
 	return (0);
 }
@@ -103,13 +110,13 @@ static t_lstinfo	*init_lst(t_lstinfo *lstinfo, int argc, char *argv[],
 	{
 		if (a_stack->value > INT_MAX || a_stack->value < INT_MIN)
 			return (lst_fclean(lstinfo));
-		if (a_stack->next && a_stack->next->value < a_stack->value)
+		if (a_stack->next && a_stack->next->value <= a_stack->value)
 			*is_sorted = 0;
 		if (a_stack->next == NULL)
 			lstinfo->a_bottom = a_stack;
 		a_stack = a_stack->next;
 	}
-	if (*is_sorted || check_overlap(lstinfo->a_top))
+	if (*is_sorted || check_overlap(lstinfo, is_sorted))
 		return (lst_fclean(lstinfo));
 	return (lstinfo);
 }
@@ -119,7 +126,7 @@ int	main(int argc, char *argv[])
 	t_lstinfo	*lstinfo;
 	t_command	*lst_command;
 	int			is_sorted;
-	t_command		*tmp_command;
+	t_command	*tmp_command;
 
 	lstinfo = (t_lstinfo *)ft_calloc(1, sizeof(t_lstinfo));
 	lst_command = (t_command *)ft_calloc(1, sizeof(t_command));
