@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   four_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 16:27:46 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/21 19:14:24 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/22 01:39:27 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int	four_sort_pos_two(t_lstinfo *lstinfo, int end)
 			break ;
 		}
 	}
-	while (--rewind > 0)
+	while (rewind-- > 0)
 		if (!func_rb(lstinfo))
 			return (0);
 	return (three_sort(lstinfo, 2));

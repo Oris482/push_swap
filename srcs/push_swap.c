@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/21 21:09:43 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/22 01:39:56 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	split_by_pivot(t_lstinfo *lstinfo, int s_pivot,
 				return (0);
 			error = func_rb(lstinfo);
 		}
-		if (error == -1)
+		if (error == 0)
 			return (0);
 	}
 	if (!rewind_stack(lstinfo, 0, rewind))
@@ -46,10 +46,8 @@ static int	split_by_pivot(t_lstinfo *lstinfo, int s_pivot,
 static int	three_split(t_lstinfo *lstinfo, int start, int end, int pos)
 {
 	int	qty;
-	int	cnt;
 
 	qty = end - start + 1;
-	cnt = qty;
 	if (check_sorted(lstinfo, pos, qty))
 		return (1);
 	if (qty <= 5)
