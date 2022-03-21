@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:27:21 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/21 18:45:52 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/21 21:22:37 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,12 @@ int	sort_abc(t_lstinfo *lstinfo, int pos)
 int	sort_acb(t_lstinfo *lstinfo, int pos)
 {
 	if (pos == 0)
-		return (func_ra(lstinfo) && func_sa(lstinfo) && func_rra(lstinfo));
+	{
+		if (lstinfo->a_top->next->next->next == NULL)
+			return (func_sa(lstinfo) && func_ra(lstinfo));
+		else
+			return (func_ra(lstinfo) && func_sa(lstinfo) && func_rra(lstinfo));
+	}
 	else if (pos == 1)
 		return (func_rb(lstinfo) && func_pa(lstinfo) && func_pa(lstinfo)
 			&& func_rrb(lstinfo) && func_pa(lstinfo));
@@ -63,8 +68,13 @@ int	sort_bac(t_lstinfo *lstinfo, int pos)
 int	sort_bca(t_lstinfo *lstinfo, int pos)
 {
 	if (pos == 0)
-		return (func_ra(lstinfo) && func_sa(lstinfo) && func_rra(lstinfo)
-			&& func_sa(lstinfo));
+	{
+		if (lstinfo->a_top->next->next->next == NULL)
+			return (func_rra(lstinfo));
+		else
+			return (func_ra(lstinfo) && func_sa(lstinfo) && func_rra(lstinfo)
+				&& func_sa(lstinfo));
+	}
 	else if (pos == 1)
 		return (func_sb(lstinfo) && func_pa(lstinfo) && func_pa(lstinfo)
 			&& func_pa(lstinfo));
@@ -80,7 +90,12 @@ int	sort_bca(t_lstinfo *lstinfo, int pos)
 int	sort_cab(t_lstinfo *lstinfo, int pos)
 {
 	if (pos == 0)
-		return (func_sa(lstinfo) && sort_acb(lstinfo, 0));
+	{
+		if (lstinfo->a_top->next->next->next == NULL)
+			return (func_ra(lstinfo));
+		else
+			return (func_sa(lstinfo) && sort_acb(lstinfo, 0));
+	}
 	else if (pos == 1)
 		return (func_pa(lstinfo) && func_sb(lstinfo) && func_pa(lstinfo)
 			&& func_pa(lstinfo));

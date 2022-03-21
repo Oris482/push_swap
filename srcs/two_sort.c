@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 19:45:38 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/21 18:46:08 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:03:48 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	two_sort(t_lstinfo *lstinfo, int pos)
 	else if (pos == 1)
 	{
 		if (cur_node->idx > cur_node->next->idx)
-			return (1);
+			return (func_pa(lstinfo) && func_pa(lstinfo));
 		return (func_sb(lstinfo) && func_pa(lstinfo) && func_pa(lstinfo));
 	}
 	else
