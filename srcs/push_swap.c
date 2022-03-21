@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/21 21:01:01 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/21 21:09:43 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ static int	check_overlap(t_lstinfo *lstinfo, int *is_sorted)
 	t_stack		*cur_node;
 	t_stack		*comp_node;
 
-	cnt = 0;
 	cur_node = lstinfo->a_top;
 	while (cur_node)
 	{
 		comp_node = lstinfo->a_top;
+		cnt = 0;
 		while (comp_node)
 		{
 			if (cur_node->value == comp_node->value)
