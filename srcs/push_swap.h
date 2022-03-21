@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:40:57 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/22 02:30:06 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/22 02:55:54 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int			record_command(t_lstinfo *lstinfo, char *command);
 int	check_sorted(t_lstinfo *lstinfo, int pos, int qty);
 void	arg_indexing(t_lstinfo *lstinfo);
 t_stack	*set_cur_node(t_lstinfo *lstinfo, int pos);
+int	three_split(t_lstinfo *lstinfo, int start, int end, int pos);
+int	split_by_pivot(t_lstinfo *lstinfo, int start, int end, int pos);
 int	move_to_a(t_lstinfo *lstinfo, int pos, int qty);
 int	rewind_stack(t_lstinfo *lsfinfo, int pos, int times);
 int	manual_sort(t_lstinfo *lstinfo, int pos, int qty, int end);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+         #
+#    By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:25:06 by jaesjeon          #+#    #+#              #
-#    Updated: 2022/03/21 20:44:58 by jaesjeon         ###   ########.fr        #
+#    Updated: 2022/03/22 02:56:37 by jaesjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS_FILES = push_swap.c	\
 	   three_sort.c	\
 	   four_sort.c	\
 	   five_sort.c	\
+	   split_by_pivot.c	\
 	   debug_func.c
 SRCS_DIR = ./srcs
 HEADER_DIR = ./srcs

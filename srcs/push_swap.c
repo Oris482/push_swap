@@ -6,44 +6,15 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/22 02:23:04 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/22 02:55:26 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-static int	split_by_pivot(t_lstinfo *lstinfo, int s_pivot,
-		int b_pivot, int qty)
-{
-	int	rewind;
-	int	error;
 
-	rewind = 0;
-	while (qty-- > 0)
-	{
-		if (lstinfo->a_top->idx >= b_pivot)
-		{
-			rewind++;
-			error = func_ra(lstinfo);
-		}
-		else if (lstinfo->a_top->idx >= s_pivot)
-			error = func_pb(lstinfo);
-		else
-		{
-			if (!func_pb(lstinfo))
-				return (0);
-			error = func_rb(lstinfo);
-		}
-		if (error == 0)
-			return (0);
-	}
-	if (!rewind_stack(lstinfo, 0, rewind))
-		return (0);
-	return (1);
-}
-
-static int	three_split(t_lstinfo *lstinfo, int start, int end, int pos)
+int	three_split(t_lstinfo *lstinfo, int start, int end, int pos)
 {
 	int	qty;
 
@@ -53,18 +24,10 @@ static int	three_split(t_lstinfo *lstinfo, int start, int end, int pos)
 	if (qty <= 5)
 		return (manual_sort(lstinfo, pos, qty, end));
 	if (pos == 1)
-		return (move_to_a(lstinfo, pos, qty)
-			&& three_split(lstinfo, start, end, 0));
+		move_to_a(lstinfo, pos, qty);
 	if (pos == 2)
-		return (move_to_a(lstinfo, pos, qty)
-			&& three_split(lstinfo, start, end, 0));
-	if (!split_by_pivot(lstinfo, start + (qty / 3), start + (qty / 3 * 2), qty))
-		return (0);
-	if (!three_split(lstinfo, start + ((qty / 3) * 2), end, 0))
-		return (0);
-	if (!three_split(lstinfo, start + (qty / 3), start + (qty / 3 * 2) - 1, 1))
-		return (0);
-	return (three_split(lstinfo, start, start + (qty / 3) - 1, 2));
+		move_to_a(lstinfo, pos, qty);
+	return (split_by_pivot(lstinfo, start, end, pos));
 }
 
 static int	check_overlap(t_lstinfo *lstinfo, int *is_sorted)
