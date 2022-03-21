@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:40:57 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/20 17:38:18 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/21 20:30:38 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ t_lstinfo	*lst_fclean(t_lstinfo *lstinfo);
 int			record_command(t_lstinfo *lstinfo, char *command);
 int	check_sorted(t_lstinfo *lstinfo, int pos, int qty);
 void	arg_indexing(t_lstinfo *lstinfo);
+t_stack	*set_cur_node(t_lstinfo *lstinfo, int pos);
+int	move_to_a(t_lstinfo *lstinfo, int pos, int qty);
+int	rewind_stack(t_lstinfo *lsfinfo, int pos, int times);
+int	manual_sort(t_lstinfo *lstinfo, int pos, int qty, int end);
+int	two_sort(t_lstinfo *lstinfo, int pos);
+int	three_sort(t_lstinfo *lstinfo, int pos);
+int	four_sort(t_lstinfo *lstinfo, int pos, int end);
+int	five_sort(t_lstinfo *lstinfo, int pos, int end);
 
 int			func_sa(t_lstinfo *lstinfo);
 int			func_sb(t_lstinfo *lstinfo);
@@ -66,5 +74,7 @@ int	sort_bac(t_lstinfo *lstinfo, int pos);
 int	sort_bca(t_lstinfo *lstinfo, int pos);
 int	sort_cab(t_lstinfo *lstinfo, int pos);
 int	sort_cba(t_lstinfo *lstinfo, int pos);
+
+int	display_stack(t_lstinfo *lstinfo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/21 20:38:24 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/21 20:30:26 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	three_split(t_lstinfo *lstinfo, int start, int end, int pos)
 	if (check_sorted(lstinfo, pos, qty))
 		return (1);
 	if (qty <= 5)
-		return (manual_sort(lstinfo, pos, qty, end));
+		return (manual_sort(lstinfo, pos, qty, end) && display_stack(lstinfo));
 	if (pos == 1)
 		return (move_to_a(lstinfo, pos, qty)
 			&& three_split(lstinfo, start, end, 0));
@@ -62,6 +62,7 @@ static int	three_split(t_lstinfo *lstinfo, int start, int end, int pos)
 			&& three_split(lstinfo, start, end, 0));
 	if (!split_by_pivot(lstinfo, start + (qty / 3), start + (qty / 3 * 2), qty))
 		return (0);
+	display_stack(lstinfo);
 	if (!three_split(lstinfo, start + ((qty / 3) * 2), end, 0))
 		return (0);
 	if (!three_split(lstinfo, start + (qty / 3), start + (qty / 3 * 2) - 1, 1))
@@ -119,7 +120,9 @@ int	main(int argc, char *argv[])
 	t_lstinfo	*lstinfo;
 	t_command	*lst_command;
 	int			is_sorted;
-	t_command		*tmp_command;
+	t_stack		*tmp_a;
+	t_stack		*tmp_b;
+//	t_command		*tmp_command;
 
 	lstinfo = (t_lstinfo *)ft_calloc(1, sizeof(t_lstinfo));
 	lst_command = (t_command *)ft_calloc(1, sizeof(t_command));
@@ -134,8 +137,44 @@ int	main(int argc, char *argv[])
 		if (lstinfo == NULL)
 			return (print_error());
 		arg_indexing(lstinfo);
+		tmp_a = lstinfo->a_top;
+		tmp_b = lstinfo->b_top;
+		printf("=========init stack========\n");
+		printf("#####Stack A#####\n");
+		while (tmp_a)
+		{
+			printf("%d ", tmp_a->idx);
+			tmp_a = tmp_a->next;
+		}
+		printf("\n#####Stack B#####\n");
+		while (tmp_b)
+		{
+			printf("%d ",  tmp_b->idx);
+			tmp_b = tmp_b->next;
+		}
 		if (!three_split(lstinfo, 0, lstinfo->arg_cnt - 1, 0))
 			return (print_error());
+		tmp_a = lstinfo->a_top;
+		tmp_b = lstinfo->b_top;
+		printf("\n----------After move-----------\n");
+		printf("\n#####Stack A#####\n");
+		while (tmp_a)
+		{
+			printf("%d ", tmp_a->idx);
+			tmp_a = tmp_a->next;
+		}
+		printf("\n#####Stack B#####\n");
+		while (tmp_b)
+		{
+			printf("%d ", tmp_b->idx);
+			tmp_b = tmp_b->next;
+		}
+		printf("\n----------pos check-----------\n");
+		//printf("pos 0 check = %d\n", check_sorted(lstinfo, 0, 3));
+		//printf("pos 1 check = %d\n", check_sorted(lstinfo, 1, 3));
+		//printf("pos 2 check = %d\n", check_sorted(lstinfo, 2, 3));
+		/*
+		printf("\n----------command list-----------\n");
 		while (lstinfo->lst_command->prev != NULL)
 			lstinfo->lst_command = lstinfo->lst_command->prev;
 		tmp_command = lstinfo->lst_command;
@@ -144,6 +183,7 @@ int	main(int argc, char *argv[])
 			printf("%s\n", tmp_command->command);
 			tmp_command = tmp_command->next;
 		}
+		*/
 		lst_fclean(lstinfo);
 	}
 }

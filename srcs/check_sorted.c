@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 20:51:33 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/20 17:54:04 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/21 18:53:07 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int	move_to_a(t_lstinfo *lstinfo, int pos, int qty)
 {
 	if (pos == 1)
+	{
 		while (qty-- > 0)
-		{
 			if (!func_pa(lstinfo))
 				return (0);
-		}
+	}
 	else
 	{
 		while (qty-- > 0)
@@ -33,7 +33,7 @@ int	move_to_a(t_lstinfo *lstinfo, int pos, int qty)
 	return (1);
 }
 
-static int check_pos_zero(t_stack *cur_stack, int qty)
+static int	check_pos_zero(t_stack *cur_stack, int qty)
 {
 	while (--qty > 0)
 	{
@@ -44,7 +44,7 @@ static int check_pos_zero(t_stack *cur_stack, int qty)
 	return (1);
 }
 
-static int check_pos_one(t_stack *cur_stack, int qty)
+static int	check_pos_one(t_stack *cur_stack, int qty)
 {
 	while (--qty > 0)
 	{
@@ -55,7 +55,7 @@ static int check_pos_one(t_stack *cur_stack, int qty)
 	return (1);
 }
 
-static int check_pos_two(t_stack *cur_stack, int qty)
+static int	check_pos_two(t_stack *cur_stack, int qty)
 {
 	while (--qty > 0)
 	{
@@ -72,7 +72,7 @@ int	check_sorted(t_lstinfo *lstinfo, int pos, int qty)
 		return (1);
 	else if (pos == 1 && check_pos_one(lstinfo->b_top, qty))
 		return (move_to_a(lstinfo, pos, qty));
-	else if (check_pos_two(lstinfo->b_bottom, qty))
+	else if (pos == 2 && check_pos_two(lstinfo->b_bottom, qty))
 		return (move_to_a(lstinfo, pos, qty));
 	return (0);
 }

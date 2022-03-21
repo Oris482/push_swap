@@ -6,11 +6,34 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:09 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/20 19:55:12 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/21 20:30:59 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	rewind_stack(t_lstinfo *lstinfo, int pos, int times)
+{
+	while (times-- > 0)
+	{
+		if (pos == 0)
+		{
+			if (!func_rra(lstinfo))
+				return (0);
+		}
+		else if (pos == 1)
+		{
+			if (!func_rrb(lstinfo))
+				return (0);
+		}
+		else if (pos == 2)
+		{
+			if (!func_rb(lstinfo))
+				return (0);
+		}
+	}
+	return (1);
+}
 
 t_stack	*set_cur_node(t_lstinfo *lstinfo, int pos)
 {

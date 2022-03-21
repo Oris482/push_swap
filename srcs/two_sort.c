@@ -6,9 +6,11 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 19:45:38 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/20 19:53:08 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/21 18:46:08 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 int	two_sort(t_lstinfo *lstinfo, int pos)
 {
