@@ -6,7 +6,7 @@
 #    By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:25:06 by jaesjeon          #+#    #+#              #
-#    Updated: 2022/03/22 03:35:00 by jaesjeon         ###   ########.fr        #
+#    Updated: 2022/03/22 11:54:39 by jaesjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,13 @@ SRCS_FILES = push_swap.c	\
 	   arg_indexing.c	\
 	   manual_sort.c	\
 	   two_sort.c	\
-	   three_sort.c	\
+	   three_sort_one.c	\
+	   three_sort_two.c	\
 	   four_sort.c	\
 	   five_sort.c	\
 	   split_by_pivot.c	\
+	   print_command.c	\
+	   compress_command.c	\
 	   debug_func.c
 SRCS_DIR = ./srcs
 HEADER_DIR = ./srcs

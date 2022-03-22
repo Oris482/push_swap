@@ -63,7 +63,7 @@ static int  split_pos_two(t_lstinfo *lstinfo, int m_pivot, int qty)
 	return (1);
 }
 
-int	split_by_pivot(t_lstinfo *lstinfo, int start, int end, int pos)
+static int	split_by_pivot(t_lstinfo *lstinfo, int start, int end, int pos)
 {
     int qty;
     int s_pivot;
@@ -76,16 +76,28 @@ int	split_by_pivot(t_lstinfo *lstinfo, int start, int end, int pos)
     m_pivot = start + (qty / 2);
     if (pos == 0)
         return (split_pos_zero(lstinfo, s_pivot, b_pivot, qty)
-            && three_split(lstinfo, b_pivot, end, 0)
-            && three_split(lstinfo, s_pivot, b_pivot - 1, 1)
-            && three_split(lstinfo, start, s_pivot - 1, 2));
+            && split_recursive(lstinfo, b_pivot, end, 0)
+            && split_recursive(lstinfo, s_pivot, b_pivot - 1, 1)
+            && split_recursive(lstinfo, start, s_pivot - 1, 2));
     if (pos == 1)
         return (split_pos_one(lstinfo, m_pivot, qty)
-            && three_split(lstinfo, m_pivot, end, 0)
-            && three_split(lstinfo, start, m_pivot - 1, 2));
+            && split_recursive(lstinfo, m_pivot, end, 0)
+            && split_recursive(lstinfo, start, m_pivot - 1, 2));
     if (pos == 2)
         return (split_pos_two(lstinfo, m_pivot, qty)
-            && three_split(lstinfo, m_pivot, end, 0)
-            && three_split(lstinfo, start, m_pivot - 1, 1));
+            && split_recursive(lstinfo, m_pivot, end, 0)
+            && split_recursive(lstinfo, start, m_pivot - 1, 1));
     return (0);
+}
+
+int	split_recursive(t_lstinfo *lstinfo, int start, int end, int pos)
+{
+	int	qty;
+
+	qty = end - start + 1;
+	if (check_sorted(lstinfo, pos, qty))
+		return (1);
+	if (qty <= 5)
+		return (manual_sort(lstinfo, pos, qty, end));
+	return (split_by_pivot(lstinfo, start, end, pos));
 }

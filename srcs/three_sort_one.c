@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   three_sort.c                                       :+:      :+:    :+:   */
+/*   three_sort_one.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:27:21 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/21 21:22:37 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/22 10:56:13 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,42 +84,6 @@ int	sort_bca(t_lstinfo *lstinfo, int pos)
 			return (sort_bca(lstinfo, 1));
 		return (func_rrb(lstinfo) && func_rrb(lstinfo) && func_pa(lstinfo)
 			&& func_rrb(lstinfo) && func_pa(lstinfo) && func_pa(lstinfo));
-	}
-}
-
-int	sort_cab(t_lstinfo *lstinfo, int pos)
-{
-	if (pos == 0)
-	{
-		if (lstinfo->a_top->next->next->next == NULL)
-			return (func_ra(lstinfo));
-		else
-			return (func_sa(lstinfo) && sort_acb(lstinfo, 0));
-	}
-	else if (pos == 1)
-		return (func_pa(lstinfo) && func_sb(lstinfo) && func_pa(lstinfo)
-			&& func_pa(lstinfo));
-	else
-	{
-		if (lstinfo->b_bottom->prev->prev == lstinfo->b_top)
-			return (sort_cab(lstinfo, 1));
-		return (func_rrb(lstinfo) && func_rrb(lstinfo) && func_rrb(lstinfo)
-			&& sort_cab(lstinfo, 1));
-	}
-}
-
-int	sort_cba(t_lstinfo *lstinfo, int pos)
-{
-	if (pos == 0)
-		return (func_sa(lstinfo) && sort_bca(lstinfo, 0));
-	else if (pos == 1)
-		return (func_pa(lstinfo) && func_pa(lstinfo) && func_pa(lstinfo));
-	else
-	{
-		if (lstinfo->b_bottom->prev->prev == lstinfo->b_top)
-			return (sort_cba(lstinfo, 1));
-		return (func_rrb(lstinfo) && func_rrb(lstinfo) && func_rrb(lstinfo)
-			&& sort_cba(lstinfo, 1));
 	}
 }
 

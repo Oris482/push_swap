@@ -6,25 +6,13 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/22 04:10:07 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/22 12:08:19 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-
-int	three_split(t_lstinfo *lstinfo, int start, int end, int pos)
-{
-	int	qty;
-
-	qty = end - start + 1;
-	if (check_sorted(lstinfo, pos, qty))
-		return (1);
-	if (qty <= 5)
-		return (manual_sort(lstinfo, pos, qty, end));
-	return (split_by_pivot(lstinfo, start, end, pos));
-}
 
 static int	check_overlap(t_lstinfo *lstinfo, int *is_sorted)
 {
@@ -81,15 +69,12 @@ static t_lstinfo	*init_lst(t_lstinfo *lstinfo, int argc, char *argv[],
 int	main(int argc, char *argv[])
 {
 	t_lstinfo	*lstinfo;
-	t_command	*lst_command;
 	int			is_sorted;
-	t_command	*tmp_command;
 
 	lstinfo = (t_lstinfo *)ft_calloc(1, sizeof(t_lstinfo));
-	lst_command = (t_command *)ft_calloc(1, sizeof(t_command));
-	if (lstinfo == NULL || lst_command == NULL)
+	lstinfo->lst_command = (t_command *)ft_calloc(1, sizeof(t_command));
+	if (lstinfo == NULL || lstinfo->lst_command == NULL)
 		return (print_error());
-	lstinfo->lst_command = lst_command;
 	if (argc > 1)
 	{
 		lstinfo = init_lst(lstinfo, argc, argv, &is_sorted);
@@ -98,16 +83,9 @@ int	main(int argc, char *argv[])
 		if (lstinfo == NULL)
 			return (print_error());
 		arg_indexing(lstinfo);
-		if (!three_split(lstinfo, 0, lstinfo->a_arg_cnt - 1, 0))
+		if (!split_recursive(lstinfo, 0, lstinfo->a_arg_cnt - 1, 0))
 			return (print_error());
-		while (lstinfo->lst_command->prev != NULL)
-			lstinfo->lst_command = lstinfo->lst_command->prev;
-		tmp_command = lstinfo->lst_command;
-		while (tmp_command)
-		{
-			printf("%s\n", tmp_command->command);
-			tmp_command = tmp_command->next;
-		}
+		print_command(lstinfo);
 		lst_fclean(lstinfo);
 	}
 }
