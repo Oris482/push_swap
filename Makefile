@@ -6,7 +6,7 @@
 #    By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:25:06 by jaesjeon          #+#    #+#              #
-#    Updated: 2022/03/24 18:02:37 by jaesjeon         ###   ########.fr        #
+#    Updated: 2022/03/24 18:26:32 by jaesjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,19 +58,17 @@ CH_SRCS = $(addprefix $(CH_SRCS_DIR)/, $(CH_SRCS_FILES))
 OBJS = $(SRCS:.c=.o)
 CH_OBJS = $(CH_SRCS:.c=.o)
 
-.PHONY: all clean fclean re checker
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
 $(NAME): $(LIBFT_HEADER) $(PS_HEADER) $(OBJS)
-	make -C $(LIBFT_DIR)
+	make bonus -C $(LIBFT_DIR)
 	cp $(LIBFT_DIR)/$(LIBFT) .
 	$(CC) $(SRCS) -I$(HEADER_DIR) -L. -lft -o $@
 
-checker: $(CHECKER)
-
 $(CHECKER): $(LIBFT_HEADER) $(CH_HEADER) $(CH_OBJS)
-	make -C $(LIBFT_DIR)
+	make bonus -C $(LIBFT_DIR)
 	cp $(LIBFT_DIR)/$(LIBFT) .
 	$(CC) $(CH_SRCS) -I$(CH_HEADER_DIR) -L. -lft -o $@
 
