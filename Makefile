@@ -6,7 +6,7 @@
 #    By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:25:06 by jaesjeon          #+#    #+#              #
-#    Updated: 2022/03/24 19:32:33 by jaesjeon         ###   ########.fr        #
+#    Updated: 2022/03/24 18:29:36 by user             ###   ########.kr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRCS_FILES = push_swap.c	\
 	   split_by_pivot.c	\
 	   print_command.c	\
 	   compress_command.c	\
-	   debug_func.c
+
 CH_SRCS_FILES =	checker.c	\
 				ch_utils.c	\
 				func_sp.c	\

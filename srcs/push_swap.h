@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:40:57 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/24 17:36:15 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:29:07 by user             ###   ########.kr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,5 @@ int			sort_bac(t_lstinfo *lstinfo, int pos);
 int			sort_bca(t_lstinfo *lstinfo, int pos);
 int			sort_cab(t_lstinfo *lstinfo, int pos);
 int			sort_cba(t_lstinfo *lstinfo, int pos);
-
-int			display_stack(t_lstinfo *lstinfo);
 
 #endif
