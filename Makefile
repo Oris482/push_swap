@@ -6,7 +6,7 @@
 #    By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:25:06 by jaesjeon          #+#    #+#              #
-#    Updated: 2022/03/24 17:46:29 by jaesjeon         ###   ########.fr        #
+#    Updated: 2022/03/24 18:02:37 by jaesjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,14 +65,14 @@ all: $(NAME)
 $(NAME): $(LIBFT_HEADER) $(PS_HEADER) $(OBJS)
 	make -C $(LIBFT_DIR)
 	cp $(LIBFT_DIR)/$(LIBFT) .
-	$(CC) $(SRCS) -g -I$(HEADER_DIR) -L. -lft -o $@
+	$(CC) $(SRCS) -I$(HEADER_DIR) -L. -lft -o $@
 
 checker: $(CHECKER)
 
 $(CHECKER): $(LIBFT_HEADER) $(CH_HEADER) $(CH_OBJS)
 	make -C $(LIBFT_DIR)
 	cp $(LIBFT_DIR)/$(LIBFT) .
-	$(CC) $(CH_SRCS) -g -I$(CH_HEADER_DIR) -L. -lft -o $@
+	$(CC) $(CH_SRCS) -I$(CH_HEADER_DIR) -L. -lft -o $@
 
 clean:
 	make clean -C $(LIBFT_DIR)

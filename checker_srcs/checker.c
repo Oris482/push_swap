@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/24 17:35:35 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:01:30 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ static t_lstinfo	*init_lst(t_lstinfo *lstinfo, int argc, char *argv[],
 	while (a_stack && ++(lstinfo->a_arg_cnt))
 	{
 		if (a_stack->value > INT_MAX || a_stack->value < INT_MIN)
+		{
+			*is_sorted = 0;
 			return (lst_fclean(lstinfo));
+		}
 		if (a_stack->next && a_stack->next->value <= a_stack->value)
 			*is_sorted = 0;
 		if (a_stack->next == NULL)
