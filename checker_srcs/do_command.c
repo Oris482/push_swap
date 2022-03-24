@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:23:03 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/24 17:36:45 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/24 19:37:07 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	do_command(t_lstinfo *lstinfo)
 	command = "";
 	while (command)
 	{
-		command = get_next_line(1);
+		command = get_next_line(0);
 		if (command)
 		{
 			command_code = get_code(command);
