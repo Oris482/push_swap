@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/24 17:45:44 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:35:35 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
+#include "get_next_line.h"
 
 static int	check_overlap(t_lstinfo *lstinfo, int *is_sorted)
 {
@@ -52,10 +53,7 @@ static t_lstinfo	*init_lst(t_lstinfo *lstinfo, int argc, char *argv[],
 	while (a_stack && ++(lstinfo->a_arg_cnt))
 	{
 		if (a_stack->value > INT_MAX || a_stack->value < INT_MIN)
-		{
-			*is_sorted = 0;
 			return (lst_fclean(lstinfo));
-		}
 		if (a_stack->next && a_stack->next->value <= a_stack->value)
 			*is_sorted = 0;
 		if (a_stack->next == NULL)
@@ -73,20 +71,19 @@ int	main(int argc, char *argv[])
 	int			is_sorted;
 
 	lstinfo = (t_lstinfo *)ft_calloc(1, sizeof(t_lstinfo));
-	lstinfo->lst_command = (t_command *)ft_calloc(1, sizeof(t_command));
-	if (lstinfo == NULL || lstinfo->lst_command == NULL)
-		return (print_error());
+	if (lstinfo == NULL)
+		return (print_result('e'));
 	if (argc > 1)
 	{
 		lstinfo = init_lst(lstinfo, argc, argv, &is_sorted);
 		if (is_sorted == 1)
 			return (0);
 		if (lstinfo == NULL)
-			return (print_error());
-		arg_indexing(lstinfo);
-		if (!split_recursive(lstinfo, 0, lstinfo->a_arg_cnt - 1, 0))
-			return (print_error());
-		print_command(lstinfo);
-		lst_fclean(lstinfo);
+			return (print_result('e'));
+		do_command(lstinfo);
+		if (check_sorted(lstinfo))
+			return (print_result('o') || lst_fclean(lstinfo));
+		else
+			return (print_result('x') || lst_fclean(lstinfo));
 	}
 }

@@ -6,38 +6,11 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:09 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/24 15:17:31 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:04:27 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-int	rewind_stack(t_lstinfo *lstinfo, int pos, int times)
-{
-	if (pos == 0 && times == lstinfo->a_arg_cnt)
-		return (1);
-	else if ((pos == 1 || pos == 2) && times == lstinfo->b_arg_cnt)
-		return (1);
-	while (times-- > 0)
-	{
-		if (pos == 0)
-		{
-			if (!func_rra(lstinfo))
-				return (0);
-		}
-		else if (pos == 1)
-		{
-			if (!func_rrb(lstinfo))
-				return (0);
-		}
-		else if (pos == 2)
-		{
-			if (!func_rb(lstinfo))
-				return (0);
-		}
-	}
-	return (1);
-}
+#include "checker.h"
 
 t_stack	*set_cur_node(t_lstinfo *lstinfo, int pos)
 {
@@ -47,31 +20,6 @@ t_stack	*set_cur_node(t_lstinfo *lstinfo, int pos)
 		return (lstinfo->b_top);
 	else
 		return (lstinfo->b_bottom);
-}
-
-int	record_command(t_lstinfo *lstinfo, char *command)
-{
-	t_command	*cur_node;
-	t_command	*new_node;
-	int			idx;
-
-	cur_node = lstinfo->lst_command;
-	idx = 0;
-	if ((cur_node->command)[0] == '\0')
-	{
-		while (*command)
-			(cur_node->command)[idx++] = *command++;
-		return (1);
-	}
-	new_node = (t_command *)ft_calloc(1, sizeof(t_command));
-	if (new_node == NULL)
-		return (0);
-	cur_node->next = new_node;
-	new_node->prev = cur_node;
-	while (*command)
-		(new_node->command)[idx++] = *command++;
-	lstinfo->lst_command = new_node;
-	return (1);
 }
 
 t_lstinfo	*lst_fclean(t_lstinfo *lstinfo)
@@ -94,8 +42,32 @@ t_lstinfo	*lst_fclean(t_lstinfo *lstinfo)
 	return (NULL);
 }
 
-int	print_error(void)
+int	check_sorted(t_lstinfo *lstinfo)
 {
-	write(2, "Error\n", 6);
+	int		is_sorted;
+	t_stack	*a_stack;
+
+	is_sorted = 1;
+	a_stack = lstinfo->a_top;
+	while (a_stack)
+	{
+		if (a_stack->next && a_stack->next->value <= a_stack->value)
+		{
+			is_sorted = 0;
+			break ;
+		}
+		a_stack = a_stack->next;
+	}
+	return (is_sorted);
+}
+
+int	print_result(int c)
+{
+	if (c == 'e')
+		write(2, "Error\n", 6);
+	else if (c == 'o')
+		write (1, "OK\n", 3);
+	else if (c == 'x')
+		write (1, "KO\n", 3);
 	return (0);
 }

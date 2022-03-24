@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jaesjeon <jaesjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:40:57 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/22 11:55:58 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:36:15 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../libft/libft.h"
 # include <stdlib.h>
-# define LLONG_MAX 9223372036854775807LL
 # define INT_MAX 2147483647LL
 # define INT_MIN -2147483648LL
 
@@ -60,8 +59,8 @@ int			two_sort(t_lstinfo *lstinfo, int pos);
 int			three_sort(t_lstinfo *lstinfo, int pos);
 int			four_sort(t_lstinfo *lstinfo, int pos, int end);
 int			five_sort(t_lstinfo *lstinfo, int pos, int end);
-void    print_command(t_lstinfo *lstinfo);
-void    compress_command(t_lstinfo *lstinfo);
+void		print_command(t_lstinfo *lstinfo);
+void		compress_command(t_lstinfo *lstinfo);
 
 int			func_sa(t_lstinfo *lstinfo);
 int			func_sb(t_lstinfo *lstinfo);
@@ -79,6 +78,6 @@ int			sort_bca(t_lstinfo *lstinfo, int pos);
 int			sort_cab(t_lstinfo *lstinfo, int pos);
 int			sort_cba(t_lstinfo *lstinfo, int pos);
 
-int	display_stack(t_lstinfo *lstinfo);
+int			display_stack(t_lstinfo *lstinfo);
 
 #endif

@@ -7,7 +7,7 @@ int	display_stack(t_lstinfo *lstinfo)
 	t_stack		*tmp_a;
 
 	tmp_a = lstinfo->a_top;
-	tmp_b = lstinfo->b_top;	
+	tmp_b = lstinfo->b_top;
 	printf("\n#####Stack A#####\n");
 	while (tmp_a)
 	{
@@ -17,7 +17,7 @@ int	display_stack(t_lstinfo *lstinfo)
 	printf("\n#####Stack B#####\n");
 	while (tmp_b)
 	{
-		printf("%d ",  tmp_b->idx);
+		printf("%d ", tmp_b->idx);
 		tmp_b = tmp_b->next;
 	}
 	printf("\n");
