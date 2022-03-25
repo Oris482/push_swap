@@ -6,14 +6,14 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/24 18:01:30 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:03:42 by jaesjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "get_next_line.h"
 
-static int	check_overlap(t_lstinfo *lstinfo, int *is_sorted)
+static int	check_overlap(t_lstinfo *lstinfo)
 {
 	int			cnt;
 	t_stack		*cur_node;
@@ -30,18 +30,14 @@ static int	check_overlap(t_lstinfo *lstinfo, int *is_sorted)
 				cnt++;
 			comp_node = comp_node->next;
 			if (cnt == 2)
-			{
-				*is_sorted = 0;
 				return (1);
-			}
 		}
 		cur_node = cur_node->next;
 	}
 	return (0);
 }
 
-static t_lstinfo	*init_lst(t_lstinfo *lstinfo, int argc, char *argv[],
-		int	*is_sorted)
+static t_lstinfo	*init_lst(t_lstinfo *lstinfo, int argc, char *argv[])
 {
 	t_stack	*a_stack;
 
@@ -49,21 +45,15 @@ static t_lstinfo	*init_lst(t_lstinfo *lstinfo, int argc, char *argv[],
 	if (lstinfo->a_top == NULL)
 		return (NULL);
 	a_stack = lstinfo->a_top;
-	*is_sorted = 1;
 	while (a_stack && ++(lstinfo->a_arg_cnt))
 	{
 		if (a_stack->value > INT_MAX || a_stack->value < INT_MIN)
-		{
-			*is_sorted = 0;
 			return (lst_fclean(lstinfo));
-		}
-		if (a_stack->next && a_stack->next->value <= a_stack->value)
-			*is_sorted = 0;
 		if (a_stack->next == NULL)
 			lstinfo->a_bottom = a_stack;
 		a_stack = a_stack->next;
 	}
-	if (*is_sorted || check_overlap(lstinfo, is_sorted))
+	if (check_overlap(lstinfo))
 		return (lst_fclean(lstinfo));
 	return (lstinfo);
 }
@@ -71,16 +61,13 @@ static t_lstinfo	*init_lst(t_lstinfo *lstinfo, int argc, char *argv[],
 int	main(int argc, char *argv[])
 {
 	t_lstinfo	*lstinfo;
-	int			is_sorted;
 
 	lstinfo = (t_lstinfo *)ft_calloc(1, sizeof(t_lstinfo));
 	if (lstinfo == NULL)
 		return (print_result('e'));
 	if (argc > 1)
 	{
-		lstinfo = init_lst(lstinfo, argc, argv, &is_sorted);
-		if (is_sorted == 1)
-			return (0);
+		lstinfo = init_lst(lstinfo, argc, argv);
 		if (lstinfo == NULL)
 			return (print_result('e'));
 		do_command(lstinfo);

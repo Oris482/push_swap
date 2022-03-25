@@ -6,7 +6,7 @@
 #    By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:25:06 by jaesjeon          #+#    #+#              #
-#    Updated: 2022/03/24 19:32:33 by jaesjeon         ###   ########.fr        #
+#    Updated: 2022/03/25 17:04:42 by jaesjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,8 @@ SRCS_FILES = push_swap.c	\
 	   five_sort.c	\
 	   split_by_pivot.c	\
 	   print_command.c	\
-	   compress_command.c	\
-	   debug_func.c
+	   compress_command.c
+
 CH_SRCS_FILES =	checker.c	\
 				ch_utils.c	\
 				func_sp.c	\
@@ -65,14 +65,14 @@ all: $(NAME)
 $(NAME): $(LIBFT_HEADER) $(PS_HEADER) $(OBJS)
 	make bonus -C $(LIBFT_DIR)
 	cp $(LIBFT_DIR)/$(LIBFT) .
-	$(CC) $(SRCS) -I$(HEADER_DIR) -L. -lft -o $@
+	$(CC) $(CFLAGS) $(SRCS) -I$(HEADER_DIR) -L. -lft -o $@
 
 bonus: $(CHECKER)
 
 $(CHECKER): $(LIBFT_HEADER) $(CH_HEADER) $(CH_OBJS)
 	make bonus -C $(LIBFT_DIR)
 	cp $(LIBFT_DIR)/$(LIBFT) .
-	$(CC) $(CH_SRCS) -I$(CH_HEADER_DIR) -L. -lft -o $@
+	$(CC) $(CFLAGS) $(CH_SRCS) -I$(CH_HEADER_DIR) -L. -lft -o $@
 
 clean:
 	make clean -C $(LIBFT_DIR)
