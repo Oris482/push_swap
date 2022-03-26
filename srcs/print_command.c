@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:04:19 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/24 18:09:12 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:34:03 by jaesjeon         ###   ########.kr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ void	print_command(t_lstinfo *lstinfo)
 		lstinfo->lst_command = lstinfo->lst_command->next;
 		free(tmp);
 	}
+	lstinfo->lst_command = NULL;
 }

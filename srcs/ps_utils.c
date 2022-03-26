@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:09 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/24 15:17:31 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:44:12 by jaesjeon         ###   ########.kr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	record_command(t_lstinfo *lstinfo, char *command)
 t_lstinfo	*lst_fclean(t_lstinfo *lstinfo)
 {
 	t_stack		*stack_tmp;
+	t_command	*command_tmp;
 
 	while (lstinfo->a_top)
 	{
@@ -89,6 +90,12 @@ t_lstinfo	*lst_fclean(t_lstinfo *lstinfo)
 		stack_tmp = lstinfo->b_top;
 		lstinfo->b_top = stack_tmp->next;
 		free(stack_tmp);
+	}
+	while (lstinfo->lst_command)
+	{
+		command_tmp = lstinfo->lst_command;
+		lstinfo->lst_command = command_tmp->prev;
+		free (command_tmp);
 	}
 	free (lstinfo);
 	return (NULL);

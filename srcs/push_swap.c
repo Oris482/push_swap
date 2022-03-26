@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:37:01 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/24 17:45:44 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:50:38 by jaesjeon         ###   ########.kr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	main(int argc, char *argv[])
 {
 	t_lstinfo	*lstinfo;
 	int			is_sorted;
+	int			error_flag;
 
 	lstinfo = (t_lstinfo *)ft_calloc(1, sizeof(t_lstinfo));
 	lstinfo->lst_command = (t_command *)ft_calloc(1, sizeof(t_command));
@@ -78,6 +79,7 @@ int	main(int argc, char *argv[])
 		return (print_error());
 	if (argc > 1)
 	{
+		error_flag = 0;
 		lstinfo = init_lst(lstinfo, argc, argv, &is_sorted);
 		if (is_sorted == 1)
 			return (0);
@@ -85,8 +87,9 @@ int	main(int argc, char *argv[])
 			return (print_error());
 		arg_indexing(lstinfo);
 		if (!split_recursive(lstinfo, 0, lstinfo->a_arg_cnt - 1, 0))
-			return (print_error());
-		print_command(lstinfo);
+			error_flag = 1;
+		if (error_flag == 0)
+			print_command(lstinfo);
 		lst_fclean(lstinfo);
 	}
 }
