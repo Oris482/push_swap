@@ -6,7 +6,7 @@
 /*   By: jaesjeon <jaesjeon@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:45:12 by jaesjeon          #+#    #+#             */
-/*   Updated: 2022/03/24 16:21:56 by jaesjeon         ###   ########.fr       */
+/*   Updated: 2022/03/27 17:46:12 by jaesjeon         ###   ########.kr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static t_stack	*ft_makelst(t_stack *prev_node, long long value)
 		return (NULL);
 	node->value = value;
 	node->next = NULL;
+	node->idx = 0;
 	if (prev_node != NULL)
 	{
 		prev_node->next = node;
